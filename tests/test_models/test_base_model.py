@@ -70,3 +70,12 @@ class TestBaseModelClass(unittest.TestCase):
         pattern = r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}"
         self.assertRegex(str(obj['created_at']), pattern)
         self.assertRegex(str(obj['updated_at']), pattern)
+
+    def test_recreate_instance(self):
+        """
+           Test that an instance is re-created from its
+           dictionary representaion
+        """
+        obj_json = self.first_model.to_dict()
+        new_obj = BaseModel(**obj_json)
+        self.assertIsNot(obj_json, new_obj)
