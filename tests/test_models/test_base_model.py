@@ -78,4 +78,5 @@ class TestBaseModelClass(unittest.TestCase):
         """
         obj_json = self.first_model.to_dict()
         new_obj = BaseModel(**obj_json)
+        # passes if objects are different
         self.assertIsNot(obj_json, new_obj)
