@@ -33,7 +33,7 @@ class BaseModel():
         else:
             self.id = str(uid.uuid4())
             self.created_at = dt.now()
-            self.updated_at = self.created_at
+            self.updated_at = dt.now()
             models.storage.new(self)
 
     def __str__(self) -> str:
