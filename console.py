@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Importing some Standard modules and modules from our packages"""
 import cmd
-import json
+import datetime as dt
 from models.base_model import BaseModel
 from models import storage
 
@@ -177,25 +177,27 @@ class HBNBCommand(cmd.Cmd):
         str_obj = storage.all()
         arg_num = args.split(" ")
         if arg_num[0] in all_classes.keys():
-            if len(arg_num) >= 2:
-                for id in str_obj.keys():
-                    if arg_num[1] in id.split(".")[1]:
-                        id = "{}.{}".format(arg_num[0], arg_num[1])
-                        obj = str_obj[id]
-                        if len(arg_num) < 3:
-                            print("** attribute name missing **")
-                            return
-                        elif len(arg_num) < 4:
-                            print("** value missing **")
-                            return
-                        else:
-                            try:
-                                setattr(obj, arg_num[2],
-                                        eval(arg_num[3].strip('"')))
-                            except Exception:
-                                setattr(obj, arg_num[2],
-                                        arg_num[3].strip('"'))
-                            storage.save()
+            if len(arg_num) < 2:
+                print("** no instance found **")
+                return
+            elif arg_num[1] in [id.split(".")[1] for id in str_obj.keys()]:
+                id = "{}.{}".format(arg_num[0], arg_num[1])
+                obj = str_obj[id]
+                if len(arg_num) < 3:
+                    print("** attribute name missing **")
+                    return
+                else:
+                    if len(arg_num) < 4:
+                        print("** value missing **")
+                        return
+                    else:
+                        try:
+                            setattr(obj, arg_num[2],
+                                    eval(arg_num[3].strip('"')))
+                        except Exception:
+                            setattr(obj, arg_num[2], arg_num[3].strip('"'))
+                        setattr(obj, 'updated_at', dt.datetime.now())
+                        storage.save()
             else:
                 print("** no instance found **")
                 return
