@@ -2,7 +2,13 @@
 """Importing some Standard modules and modules from our packages"""
 import json
 from datetime import datetime as dt 
+from models.amenity import Amenity
 from models.base_model import BaseModel
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 """
 This is a Python class that will be responsible for file storage. In this
