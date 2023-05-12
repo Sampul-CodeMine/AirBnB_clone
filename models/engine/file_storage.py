@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Importing some Standard modules and modules from our packages"""
 import json
+from datetime import datetime as dt 
 from models.base_model import BaseModel
 
 """
@@ -43,7 +44,7 @@ class FileStorage():
         with open(self.__file_path, mode="w", encoding="utf-8") as fn:
             for key, val in self.__objects.items():
                 dict_serial[key] = val.to_dict()
-            json.dump(dict_serial, fn, indent=1)
+            json.dump(dict_serial, fn)
 
     def reload(self) -> None:
         """

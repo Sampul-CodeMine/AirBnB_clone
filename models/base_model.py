@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Importing some Standard modules and modules from our packages"""
-from datetime import datetime as dt
 import models
 import uuid as uid
+from datetime import datetime as dt
 
 """
 This is a Python class that will be the Base class or Parent class from which
@@ -33,7 +33,7 @@ class BaseModel():
         else:
             self.id = str(uid.uuid4())
             self.created_at = dt.now()
-            self.updated_at = dt.now()
+            self.updated_at = self.created_at
             models.storage.new(self)
 
     def __str__(self) -> str:
