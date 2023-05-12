@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Importing some Standard modules and modules from our packages"""
 from datetime import datetime as dt
-import uuid as uid
 import models
+import uuid as uid
 
 """
 This is a Python class that will be the Base class or Parent class from which
@@ -34,6 +34,7 @@ class BaseModel():
             self.id = str(uid.uuid4())
             self.created_at = dt.now()
             self.updated_at = dt.now()
+            models.storage.new(self)
 
     def __str__(self) -> str:
         """Public instance method for the BaseModel that returns a String
@@ -45,6 +46,7 @@ class BaseModel():
         """Public instance method that updates the `updated_at` public
         instance property"""
         self.updated_at = dt.now()
+        models.storage.save()
 
     def to_dict(self) -> dict:
         """Public instance method that returns a dictionary of key/values of
