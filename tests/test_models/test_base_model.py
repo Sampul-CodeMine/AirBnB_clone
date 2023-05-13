@@ -70,3 +70,39 @@ class TestBaseModelClass(unittest.TestCase):
         pattern = r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}"
         self.assertRegex(str(obj['created_at']), pattern)
         self.assertRegex(str(obj['updated_at']), pattern)
+
+    def test_recreate_instance(self):
+        """
+           Test that an instance is re-created from its
+           dictionary representaion
+        """
+        obj_json = self.first_model.to_dict()
+        new_obj = BaseModel(**obj_json)
+        # passes if objects are different
+        self.assertIsNot(obj_json, new_obj)
+
+    def test_datetime_objects(self):
+        """
+           Test that the created_at and updated_at attributes are
+           correctly converted from string format to datetime objects
+        """
+        obj_json = self.first_model.to_dict()
+        new_obj = BaseModel(**obj_json)
+        self.assertIsInstance(new_obj.created_at, datetime)
+        self.assertIsInstance(new_obj.updated_at, datetime)
+
+    def test_attributes(self):
+        """
+           Test that the dictionary representation returned by
+           the to_dict method does not contain any private attributes
+           (but only all public attributes) of the instance.
+           __class__ is not included
+        """
+        obj_json = self.first_model.to_dict()
+        # vars returns a dictionary containing all instance attributes
+        vars_dict = vars(self.first_model)
+        # check that all keys in obj_json are also in vars_dict
+        for key in obj_json:
+            if key == '__class__':
+                continue
+            self.assertIn(key, vars_dict)
