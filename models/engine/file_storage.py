@@ -32,7 +32,7 @@ class FileStorage():
         Return:
               A dictionary of objects
         """
-        return self.__objects
+        return FileStorage.__objects
 
     def new(self, obj: dict) -> None:
         """
@@ -43,7 +43,7 @@ class FileStorage():
             obj (dict) - a dictionaary object
         """
         obj_key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        self.__objects[obj_key] = obj
+        FileStorage.__objects[obj_key] = obj
 
     def save(self) -> None:
         """
@@ -70,4 +70,4 @@ class FileStorage():
                 class_name = key.split(".")[0]
                 self.new(eval(class_name + "(**val)"))
         except FileNotFoundError:
-            ...
+            pass
