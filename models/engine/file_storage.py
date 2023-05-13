@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Importing some Standard modules and modules from our packages"""
 import json
-from datetime import datetime as dt 
+from datetime import datetime as dt
 from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.city import City

@@ -75,9 +75,6 @@ We will be building this **AirBnB Clone** web application phase by phase using t
 
 > _Note: The problem definition, requirements are already done for us. We only need to design a clone of the original using our own design, implement our code with our choice programming language which in this project is **Python Programming Language** and test our implementations using **Python's unittest module**._
 
-
-
-
 ## Classes Needed in this Project
 
 |   Classes -->  | BaseModel | User | State | City | Amenity | Place | Review | FileStorage |
@@ -89,7 +86,7 @@ We will be building this **AirBnB Clone** web application phase by phase using t
 
 ## How Program is Executed
 
-### Your shell should work like this in interactive mode:
+### Your shell should work like this in interactive mode
 
 ```bash
 $ ./console.py
@@ -128,3 +125,212 @@ EOF  help  quit
 (hbnb) 
 $
 ```
+
+## AirBnB Clone Console Usage
+
+### How to Start The Console
+
+The AirBnB Clone console can be run both interactively and non-interactively.
+
+**Running in the Non-Interactive Mode**
+
+```shell
+$ echo "help" | python3 console.py
+(hbnb)
+Documented commands (type help <topic>):
+========================================
+EOF  all  create  destroy  help  quit  show  update
+
+(hbnb)
+$
+```
+
+or
+
+```shell
+$ echo "help" | ./console.py
+(hbnb)
+Documented commands (type help <topic>):
+========================================
+EOF  all  create  destroy  help  quit  show  update
+
+(hbnb)
+$
+```
+
+Alternatively, it can be run in interactive mode, run the file `console.py` by itself:
+
+**Running in the Interactive Mode**
+
+```shell
+$ ./console.py
+(hbnb)
+
+```
+
+or
+
+```shell
+$ python3 console.py
+(hbnb)
+
+```
+
+In this README or guide, we will be making most of the documentation with the interactive mode.<br> When you execute the above command, it displays a prompt `(hbnb)`. This is the prompt required of the project and it awaits inputs from the user.
+
+### **Quiting the Console**
+
+To quit the console, you can type in any of the following:
+
+- EOF
+- quit
+
+or do the following key combinations on your keyboard
+
+- CMD+D (Unix) / CRTL+C (Windows)
+
+```shell
+(hbnb) quit
+$
+
+```
+
+or
+
+```shell
+(hbnb) EOF
+$
+
+```
+
+or
+
+```shell
+(hbnb) (CTRL+C)
+$
+
+```
+
+### **Getting Help**
+
+#### **To get help generally**
+
+```shell
+
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+EOF  all  create  destroy  help  quit  show  update
+
+(hbnb)
+```
+
+#### **To get help for a particular command**
+
+```shell
+
+(hbnb) help all
+
+The `all` command displays the string representation of all class instances present in the storage.
+
+Usage:
+(hbnb) all User
+```
+
+```shell
+(hbnb) help update
+
+The `update` command update a specified instance of a using the class name and the ID of the instance, and and the specifying the attribute to update or adding a new attribute plus the value.
+
+Usage:
+(hbnb) update User 1234-5678 email 'test@oop.com'
+
+(hbnb)
+```
+
+Presently, we have nothing in the flat file database, We will create a New User and a BaseModel
+
+```shell
+(hbnb) all
+[]
+(hbnb)
+
+```
+
+Firstly, we have to get help on how to create an instance of a model and what models are available
+
+```shell
+$ ./console.py
+(hbnb) help create
+
+The `create` command creates an instance of a class, saves it to the storage and prints out the ID of the instance created.
+
+Models available includes:
+
+        Amenity
+        BaseModel
+        City
+        Place
+        Review
+        State
+        User
+
+Usage:
+(hbnb) create User
+
+(hbnb)
+```
+
+To create a New User model, we type `create User` and it returns the ID of the User model created
+
+ ```shell
+ (hbnb) create User
+97bf8455-58aa-4d65-a83e-32699de58bbb
+(hbnb)
+```
+
+To display the details of the User model that was created, 
+
+```shell
+(hbnb) show User 97bf8455-58aa-4d65-a83e-32699de58bbb
+[User] (97bf8455-58aa-4d65-a83e-32699de58bbb) {'id': '97bf8455-58aa-4d65-a83e-32699de58bbb', 'created_at': datetime.datetime(2023, 5, 13, 13, 16, 37, 181187), 'updated_at': datetime.datetime(2023, 5, 13, 13, 16, 37, 181187)}
+(hbnb)
+```
+
+To update the details of the User model created, we can specify a new attribute and supply a value for the new attribute or specify an existing attribute and give a new value to replace the previous value. 
+
+```shell
+(hbnb) update User 97bf8455-58aa-4d65-a83e-32699de58bbb nationality "Nigerian"
+(hbnb)
+
+(hbnb) show User 97bf8455-58aa-4d65-a83e-32699de58bbb
+[User] (97bf8455-58aa-4d65-a83e-32699de58bbb) {'id': '97bf8455-58aa-4d65-a83e-32699de58bbb', 'created_at': datetime.datetime(2023, 5, 13, 13, 16, 37, 181187), 'updated_at': datetime.datetime(2023, 5, 13, 13, 21, 11, 714225), 'nationality': 'Nigerian'}
+(hbnb)
+
+(hbnb) update User 97bf8455-58aa-4d65-a83e-32699de58bbb email "test.user@email.com"
+(hbnb) show User 97bf8455-58aa-4d65-a83e-32699de58bbb
+[User] (97bf8455-58aa-4d65-a83e-32699de58bbb) {'id': '97bf8455-58aa-4d65-a83e-32699de58bbb', 'created_at': datetime.datetime(2023, 5, 13, 13, 16, 37, 181187), 'updated_at': datetime.datetime(2023, 5, 13, 13, 24, 24, 386540), 'nationality': 'Nigerian', 'email': 'test.user@email.com'}
+(hbnb)
+```
+
+To remove a model from the flat file database,
+
+```shell
+(hbnb) destroy User 97bf8455-58aa-4d65-a83e-32699de58bbb
+(hbnb) all
+[]
+(hbnb) all User
+[]
+(hbnb) show User 97bf8455-58aa-4d65-a83e-32699de58bbb
+** no instance found **
+(hbnb)
+```
+---
+
+
+<p>The program is interactive and the documentation from the help file is leading enough.</p>
+
+## Authors
+
+> Bright Iniabasi [@Brightini](https://github.com/Brightini), and Dukeson Ehigboria [@Sampul-CodeMine](https://www.linkedin.com/in/dukeson-ehigboria/) are formidable Interns at the ALX Africa Software Engineering programme 2022 / 2023 schedule.

@@ -85,6 +85,9 @@ class HBNBCommand(cmd.Cmd):
         print("The `create` command creates an instance of a class, ", end="")
         print("saves it to the storage and prints out the ID of the", end=" ")
         print("instance created.\n")
+        print("Models available includes:\n")
+        print("\tAmenity\n\tBaseModel\n\tCity\n\tPlace\n\tReview\n\t", end="")
+        print("State\n\tUser\n")
         print("Usage:\n(hbnb) create User\n")
 
     def do_show(self, args=None) -> None:
