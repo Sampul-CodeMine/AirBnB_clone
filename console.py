@@ -200,18 +200,31 @@ class HBNBCommand(cmd.Cmd):
         the instances of a class based on the classname specified or no
         classname specified"""
         list_all = []
-        str_obj = storage.all()
-        arg_num = args.split(" ")
-        if len(args) == 0:
-            for obj in str_obj.values():
-                list_all.append(str(obj))
-        elif arg_num[0] in all_classes.keys():
-            for id in str_obj.keys():
-                if id.split(".")[0] == arg_num[0]:
-                    list_all.append(str(str_obj[id]))
+        # str_obj = storage.all()
+        # arg_num = args.split(" ")
+        # if len(args) == 0:
+        #     for obj in str_obj.values():
+        #         list_all.append(str(obj))
+        # elif arg_num[0] in all_classes.keys():
+        #     for id in str_obj.keys():
+        #         if id.split(".")[0] == arg_num[0]:
+        #             list_all.append(str(str_obj[id]))
+        # else:
+        #     print("** class doesn't exist **")
+        #     return
+        # print(list_all)
+        if args != "":
+            arg_num = args.split(" ")
+            if arg_num[0] in all_classes.keys():
+                for key, val in storage.all().items():
+                    if type(val).__name__ == arg_num[0]:
+                        list_all.append(str(val))
+            else:
+                print("** class doesn't exist **")
+                return
         else:
-            print("** class doesn't exist **")
-            return
+            for key, val in storage.all().items():
+                list_all.append(str(val))
         print(list_all)
 
     def help_all(self) -> None:
@@ -219,7 +232,7 @@ class HBNBCommand(cmd.Cmd):
         print("")
         print("The `all` command displays the string representation", end="")
         print(" of all class instances present in the storage.\n")
-        print("Usage:\n(hbnb) all User\n")
+        print("Usage:\n(hbnb) all User\nor\n(hbnb) User.all()\n")
 
     def do_update(self, args) -> None:
         """Public instance method that updates a specified instance of a class
@@ -278,6 +291,79 @@ class HBNBCommand(cmd.Cmd):
         print(" and the specifying the attribute to update or adding", end="")
         print(" a new attribute plus the value.\n")
         print("Usage:\n(hbnb) update User 1234-5678 email 'test@oop.com'\n")
+
+    def do_count(self, args) -> None:
+        """Public instance method that counts the instances of a class"""
+        if len(args) == 0:
+            print("** class name missing **")
+            return
+        arg_num = args.split(" ")
+        instance_count = 0
+        if arg_num[0]:
+            if arg_num[0] in all_classes.keys():
+                for num in storage.all():
+                    if num.startswith(arg_num[0] + "."):
+                        instance_count += 1
+            else:
+                print("** class doesn't exist **")
+                return
+        else:
+            print("** class name missing **")
+            return
+        print(instance_count)
+
+    def help_count(self) -> None:
+        """Updates the help for count"""
+        print("")
+        print("The `count` command displays the number of instances", end="")
+        print(" of a specified class found in the json file.", end="\n")
+        print("Usage:\n(hbnb) count User'\nor\n(hbnb) User.count()\n")
+
+    def default(self, args):
+        """This public instance method is called when an invalid command is
+        given. If this is not overwritten, it displays an error, but we will
+        be handling invalid commands before returning False if command not
+        found."""
+        arg_num = args.split(".")
+        cls_name = arg_num[0]
+        if cls_name in all_classes.keys() and len(arg_num) > 1:
+            cmd = arg_num[1]
+            cmd = cmd.replace("()", "")
+            if cmd in ['all', 'count']:
+                if cmd == 'all':
+                    self.do_all(cls_name)
+                elif cmd == 'count':
+                    self.do_count(cls_name)
+            else:
+                if "show" in cmd:
+                    id = cmd.split("(")[1].strip(")")
+                    joiner = cls_name + " " + id
+                    joiner = joiner.replace('"', "")
+                    self.do_show(joiner)
+                elif "destroy" in cmd:
+                    id = cmd.split("(")[1].strip(")")
+                    joiner = cls_name + " " + id
+                    joiner = joiner.replace('"', "")
+                    self.do_destroy(joiner)
+                elif "update" in cmd:
+                    clsname = cls_name
+                    if "{" not in cmd.split("(")[1]:
+                        cid = cmd.split("(")[1].split(", ")[0].strip(')"')
+                        cr_at = cmd.split("(")[1].split(", ")[1].strip(')"')
+                        up_at = cmd.split("(")[1].split(", ")[2].strip(')"')
+                        joiner = "{} {} {} {}".format(clsname, cid, cr_at,
+                                                      up_at)
+                        print(joiner)
+                        self.do_update(joiner)
+                    elif len(cmd.split("(")[1].split(", {")) == 2:
+                        cid = cmd.split("(")[1].split(", {")[0].strip(')"')
+                        stn = cmd.split("(")[1].split(", {")[1].strip(")")
+                        dic = eval("{" + stn)
+                        for key, val in dic.items():
+                            joiner = "{} {} {} {}".format(clsname, cid,
+                                                          key, str(val))
+                            print(joiner)
+                            self.do_update(joiner)
 
 
 if __name__ == "__main__":
