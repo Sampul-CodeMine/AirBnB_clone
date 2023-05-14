@@ -279,8 +279,5 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == "__main__":
-    try:
-        commnd = HBNBCommand()
-        commnd.cmdloop()
-    except (KeyboardInterrupt, EOFError):
-        exit(1)
+    commnd = HBNBCommand()
+    commnd.cmdloop()
