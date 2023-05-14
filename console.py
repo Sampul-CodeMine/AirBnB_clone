@@ -2,6 +2,7 @@
 """Importing some Standard modules and modules from our packages"""
 import cmd
 import datetime as dt
+import re
 from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.city import City
@@ -27,6 +28,41 @@ all_classes = {
     "User": User
 }
 
+attributes = {
+    "BaseModel":{
+        "id": str,
+        "created_at": dt.datetime,
+        "updated_at": dt.datetime
+    }, "User":{
+        "email": str,
+        "password": str,
+        "first_name": str,
+        "last_name": str
+    }, "State": {
+        "name": str
+    }, "City": {
+        "state_id": str,
+        "name": str
+    }, "Amenity": {
+        "name": str
+    }, "Place": {
+        "city_id": str,
+        "user_id": str,
+        "name": str,
+        "description": str,
+        "number_rooms": int,
+        "number_bathrooms": int,
+        "max_guest": int,
+        "price_by_night": int,
+        "latitude": float,
+        "longitude": float,
+        "amenity_ids": list
+    }, "Review": {
+        "place_id": str,
+        "user_id": str,
+        "text": str
+    }
+}
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -37,8 +73,8 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def do_quit(self, arg: any) -> None:
-        """Issues a quit command to the CLI"""
-        exit(1)
+        """Issues a quit command to the CLI by returning True"""
+        return True
 
     def help_quit(self) -> None:
         """Updates the help for quit"""
@@ -60,7 +96,9 @@ class HBNBCommand(cmd.Cmd):
         print("or\n(hbnb) <CTRL + Z>\n")
 
     def emptyline(self) -> None:
-        ...
+        """Method that does nothing when the ENTER key is pressed without a
+        command."""
+        pass
 
     def do_create(self, args) -> None:
         """Public instance method that creates new instance of a class, save
@@ -91,8 +129,8 @@ class HBNBCommand(cmd.Cmd):
         print("Usage:\n(hbnb) create User\n")
 
     def do_show(self, args=None) -> None:
-        """Public instance method that displays the string instance of a class,
-        based on the instance id and classname specified"""
+        """Public instance method that displays the string instance of a
+        class, based on the instance id and classname specified"""
         if len(args) == 0:
             print("** class name missing **")
             return
@@ -186,39 +224,49 @@ class HBNBCommand(cmd.Cmd):
         """Public instance method that updates a specified instance of a class
         using the id and either adding more attributes or updating an
         attribute"""
-        if len(args) == 0:
-            print("** class name missing **")
-            return
-        str_obj = storage.all()
-        arg_num = args.split(" ")
-        if arg_num[0] in all_classes.keys():
-            if len(arg_num) < 2:
-                print("** no instance found **")
-                return
-            elif arg_num[1] in [id.split(".")[1] for id in str_obj.keys()]:
-                id = "{}.{}".format(arg_num[0], arg_num[1])
-                obj = str_obj[id]
-                if len(arg_num) < 3:
-                    print("** attribute name missing **")
-                    return
-                else:
-                    if len(arg_num) < 4:
-                        print("** value missing **")
-                        return
+        regx = r'^(\S+)(?:\s(\S+)(?:\s(\S+)(?:\s((?:"[^"]*")|(?:(\S)+)))?)?)?'
+        is_match = re.search(regx, args)
+        cls_name_match = is_match.group(1)
+        uid_match = is_match.group(2)
+        attr_match = is_match.group(3)
+        val_match = is_match.group(4)
+        if is_match:
+            if cls_name_match in all_classes.keys():
+                if uid_match:
+                    id = "{}.{}".format(cls_name_match, uid_match)
+                    if id in storage.all():
+                        if attr_match:
+                            if val_match:
+                                datatype = None
+                                if not re.search('^".*"$', val_match):
+                                    if '.' in val_match:
+                                        datatype = float
+                                    else:
+                                        datatype = int
+                                else:
+                                    val_match = val_match.replace('"', '')
+                                attrs = attributes[cls_name_match]
+                                if attr_match in attrs:
+                                    val_match = attrs[attr_match](val_match)
+                                elif datatype:
+                                    try:
+                                        val_match = datatype(val_match)
+                                    except ValueError:
+                                        ...
+                                setattr(storage.all()[id], attr_match, val_match)
+                                storage.all()[id].save()
+                            else:
+                                print("** value missing **")
+                        else:
+                            print("** attribute name missing **")
                     else:
-                        try:
-                            setattr(obj, arg_num[2],
-                                    eval(arg_num[3].strip('"')))
-                        except Exception:
-                            setattr(obj, arg_num[2], arg_num[3].strip('"'))
-                        setattr(obj, 'updated_at', dt.datetime.now())
-                        storage.save()
+                        print("** no instance found **")
+                else:
+                    print("** instance id missing **")
             else:
-                print("** no instance found **")
-                return
+                print("** class doesn't exist **")
         else:
-            print("** class doesn't exist **")
-            return
+            print("** class name missing **")
 
     def help_update(self) -> None:
         """Updates the help for update"""
