@@ -238,6 +238,9 @@ class HBNBCommand(cmd.Cmd):
         """Public instance method that updates a specified instance of a class
         using the id and either adding more attributes or updating an
         attribute"""
+        if len(args) == 0:
+            print("** class name missing **")
+            return
         regx = r'^(\S+)(?:\s(\S+)(?:\s(\S+)(?:\s((?:"[^"]*")|(?:(\S)+)))?)?)?'
         is_match = re.search(regx, args)
         cls_name_match = is_match.group(1)
