@@ -29,11 +29,11 @@ all_classes = {
 }
 
 attributes = {
-    "BaseModel":{
+    "BaseModel": {
         "id": str,
         "created_at": dt.datetime,
         "updated_at": dt.datetime
-    }, "User":{
+    }, "User": {
         "email": str,
         "password": str,
         "first_name": str,
@@ -63,6 +63,7 @@ attributes = {
         "text": str
     }
 }
+
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -252,8 +253,9 @@ class HBNBCommand(cmd.Cmd):
                                     try:
                                         val_match = datatype(val_match)
                                     except ValueError:
-                                        ...
-                                setattr(storage.all()[id], attr_match, val_match)
+                                        pass
+                                setattr(storage.all()[id], attr_match,
+                                        val_match)
                                 storage.all()[id].save()
                             else:
                                 print("** value missing **")
@@ -279,8 +281,5 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == "__main__":
-    try:
-        commnd = HBNBCommand()
-        commnd.cmdloop()
-    except (KeyboardInterrupt, EOFError):
-        exit(1)
+    commnd = HBNBCommand()
+    commnd.cmdloop()
