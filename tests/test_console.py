@@ -119,5 +119,6 @@ class TestConsole(unittest.TestCase):
         sys.stdout.seek(0)
         sys.stdout.truncate(0)
 
+
 if __name__ == '__main__':
     unittest.main()

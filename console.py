@@ -200,19 +200,6 @@ class HBNBCommand(cmd.Cmd):
         the instances of a class based on the classname specified or no
         classname specified"""
         list_all = []
-        # str_obj = storage.all()
-        # arg_num = args.split(" ")
-        # if len(args) == 0:
-        #     for obj in str_obj.values():
-        #         list_all.append(str(obj))
-        # elif arg_num[0] in all_classes.keys():
-        #     for id in str_obj.keys():
-        #         if id.split(".")[0] == arg_num[0]:
-        #             list_all.append(str(str_obj[id]))
-        # else:
-        #     print("** class doesn't exist **")
-        #     return
-        # print(list_all)
         if args != "":
             arg_num = args.split(" ")
             if arg_num[0] in all_classes.keys():
