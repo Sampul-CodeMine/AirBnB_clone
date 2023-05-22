@@ -1,0 +1,110 @@
+/* Styling for the section tag */
+.container .filters {
+	background-color: #ffffff;
+	height: 70px;
+	width: 100%;
+	border: 1px solid #dddddd;
+	border-radius: 4px;
+	position: relative;
+}
+
+/* Styling for the Section button to Search */
+.container .filters button {
+	position: absolute;
+	font-size: 18px;
+	background-color: #ff5a5f;
+	color: #ffffff;
+	height: 48px;
+	width: 20%;
+	border: none;
+	border-radius: 4px;
+	top: 11px;
+	right: 30px;
+}
+section.filters button:hover {
+	opacity: 0.9;
+}
+
+/* Styling for the Location and Amenities Sections */
+.filters .locations,
+.filters .amenities {
+	display: inline-block;
+	position: relative;
+	height: 100%;
+	width: 25%;
+	margin: 0;
+	border-radius: 4px;
+}
+.filters .locations:hover,
+.filters .amenities:hover {
+	background-color: #fafafa;
+}
+.filters .locations {
+	border-right: 1px solid #dddddd;
+}
+.locations h3,
+.amenities h3 {
+	font-weight: 600;
+	margin: 15px 0 2px 40px;
+}
+.locations h4,
+.amenities h4 {
+	font-weight: 400;
+	font-size: 14px;
+	margin: 0 0 0 40px;
+}
+
+/* Styling for the ul / li popover */
+div.popover {
+	box-sizing: border-box;
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	border: 1px solid #dddddd;
+	background-color: #fafafa;
+	width: 100%;
+	top: 70px;
+	border-radius: 4px;
+	display: none;
+}
+ul.popover {
+	list-style-type: none;
+	box-sizing: border-box;
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	border: 1px solid #dddddd;
+	background-color: #fafafa;
+	width: 100%;
+	top: 70px;
+	left: -4px;
+	border-radius: 4px;
+	display: none;
+}
+div.popover h2 {
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 20px;
+	margin-left: 20px;
+}
+ul.popover li{
+	display: block;
+	width: 100%;
+	padding: 5px 0 5px 20px;
+}
+ul.popover li:first-child{
+	margin-top: 20px;
+}
+ul.popover li:last-child {
+	margin-bottom: 20px;
+}
+div.popover ul li {
+	list-style-type: none;
+	display: block;
+		width: 100%;
+		padding: 5px 0 5px 20px;
+}
+.locations:hover .popover,
+.amenities:hover .popover {
+	display: block;
+}

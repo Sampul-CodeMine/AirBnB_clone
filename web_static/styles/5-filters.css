@@ -6,6 +6,7 @@
         border: 1px solid #dddddd;
         border-radius: 4px;
         position: relative;
+        box-sizing: border-box;
 }
 
 /* Styling for the Section button to Search */

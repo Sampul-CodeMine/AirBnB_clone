@@ -1,2 +1,3 @@
 w3c_validator.py
-images/sample_images/.
+images/sample_images/*.png
+images/sample_images/*.jpg
