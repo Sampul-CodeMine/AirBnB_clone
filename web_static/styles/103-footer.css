@@ -1,0 +1,16 @@
+/* Styling For Page Footer */
+#page-footer {
+        width: 100%;
+        background-color: #ffffff;
+        height: 60px;
+        border-top: 1px solid #cccccc;
+        position: fixed;
+        bottom: 0;
+}
+
+footer p {
+        text-align: center;
+        padding: 0px;
+        margin: 0px;
+        line-height: 60px;
+}

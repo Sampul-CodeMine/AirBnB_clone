@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<!-- Creating A Responsive Webpage - 0x01 - AirBnB clone - Web static -->
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AirBnB Clone</title>
+	<!-- link to the favicon image -->
+	<link rel="shortcut icon" href="./images/icon.png" type="image/x-icon">
+	<!-- links to the external CSS files -->
+	<link rel="stylesheet" href="./styles/102-common.css">
+	<link rel="stylesheet" href="./styles/102-header.css">
+	<link rel="stylesheet" href="./styles/102-filters.css">
+	<link rel="stylesheet" href="./styles/102-places.css">
+	<link rel="stylesheet" href="./styles/102-footer.css">
+</head>
+<body>
+	<!-- Page Header Starts -->
+	<header id="page-header"></header>
+	<!-- Page Header Ends -->
+
+	<!-- Container Starts -->
+	<div class="container">
+		<!-- Filter Section Starts -->
+		<section class="filters">
+			<button>Search</button>
+			<!-- Location Article Section Starts -->
+			<article class="locations">
+				<h3>States</h3>
+				<h4>Asaba, Delta...</h4>
+				<!-- Location Dropdown Section Starts -->
+				<div class="popover">
+					<h2>Cartagena:</h2>
+					<ul>
+						<li>Bocagrande</li>
+						<li>Castillo</li>
+					</ul>
+					<h2>Barranquilla:</h2>
+					<ul>
+						<li>Villa Carolina</li>
+						<li>Villa Santos</li>
+					</ul>
+				</div>
+				<!-- Location Dropdown Section Ends -->
+			</article>
+			<!-- Location Article Section Ends -->
+
+			<!-- Amenity Article Section Starts -->
+			<article class="amenities">
+				<h3>Amenities</h3>
+				<h4>Free WiFi, Cyber Cafe...</h4>
+				<!-- Amenity Dropdown Section Starts -->
+				<ul class="popover">
+					<li>Free Water</li>
+					<li>Kitchen</li>
+					<li>Internet</li>
+					<li>Iron</li>
+				</ul>
+				<!-- Amenity Dropdown Section Ends -->
+			</article>
+			<!-- Amenity Article Section Ends -->
+		</section>
+		<!-- Filter Section Ends -->
+
+		<!-- Places Section Starts -->
+		<section class="places">
+			<h1>Places</h1>
+			<div class="wrapper">
+
+				<article class="place_box">
+					<!-- Article header Starts -->
+					<hgroup>
+						<h2>Home</h2>
+						<p class="price_by_night">$79</p>
+					</hgroup>
+					<!-- Article header Ends -->
+					<!-- Article Information Starts -->
+					<div class="information">
+						<div class="max_guest">7 Guests</div>
+						<div class="number_rooms">3 Double Bed</div>
+						<div class="number_bathrooms">7 Bathrooms</div>
+					</div>
+					<!-- Article Information Ends -->
+					<!-- Article Users Starts -->
+					<div class="user">
+						<p><strong>Owner:</strong> James</p>
+					</div>
+					<!-- Article Users Ends -->
+					<!-- Article Description Starts -->
+					<div class="description">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet praesentium facilis dolorum. Excepturi iusto
+							tenet laudantium modi.</p>
+					</div>
+					<!-- Article Description Ends -->
+					<!-- Article Amenities Starts -->
+					<div class="amenities">
+						<h2>Amenities</h2>
+						<ul class="amenity_list">
+							<li class="amenity_item">Toys</li>
+							<li class="amenity_item">TV</li>
+							<li class="amenity_item">WiFi</li>
+						</ul>
+					</div>
+					<!-- Article Amenities Ends -->
+					<!-- Article Reviews Starts -->
+					<div class="reviews">
+						<h2>2 Reviews</h2>
+						<ul>
+							<li>
+								<h3>From Bob Dylan the 27th January 2019</h3>
+							</li>
+							<li>Lorem ipsum dolor sit amet, dolore quod. Libero, corporis. Consectetur quod ducimus facere dolores commodi.</li>
+						</ul>
+						<ul>
+							<li>
+								<h3>From Bob Dylan the 5th June 2020</h3>
+							</li>
+							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore aliquid dolore quod. Libero, corporis.</li>
+						</ul>
+					</div>
+					<!-- Article Reviews Ends -->
+				</article>
+
+				<article class="place_box">
+					<!-- Article header Starts -->
+					<hgroup>
+						<h2>Tiny Home</h2>
+						<p class="price_by_night">$59</p>
+					</hgroup>
+					<!-- Article header Ends -->
+					<!-- Article Information Starts -->
+					<div class="information">
+						<div class="max_guest">4 Guests</div>
+						<div class="number_rooms">5 Single Bed</div>
+						<div class="number_bathrooms">3 Bathrooms</div>
+					</div>
+					<!-- Article Information Ends -->
+					<!-- Article Users Starts -->
+					<div class="user">
+						<p><strong>Owner:</strong> Wilson</p>
+					</div>
+					<!-- Article Users Ends -->
+					<!-- Article Description Starts -->
+					<div class="description">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet praesentium facilis dolorum. Excepturi iusto teatque.</p>
+					</div>
+					<!-- Article Description Ends -->
+					<!-- Article Amenities Starts -->
+					<div class="amenities">
+						<h2>Amenities</h2>
+						<ul class="amenity_list">
+							<li class="amenity_item">Toys</li>
+							<li class="amenity_item">TV</li>
+							<li class="amenity_item">WiFi</li>
+						</ul>
+					</div>
+					<!-- Article Amenities Ends -->
+					<!-- Article Reviews Starts -->
+					<div class="reviews">
+						<h2>2 Review</h2>
+						<ul>
+							<li>
+								<h3>From Bob Dylan the 5th June 2020</h3>
+							</li>
+							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore aliquid dolore quod. Libero, corporis.</li>
+						</ul>
+						<ul>
+							<li>
+								<h3>From Bob Dylan the 27th January 2019</h3>
+							</li>
+							<li>Lorem ipsum dolor sit amet, dolore quod. Libero, corporis. Consectetur quod ducimus facere dolores commodi.</li>
+						</ul>
+					</div>
+					<!-- Article Reviews Ends -->
+				</article>
+
+				<article class="place_box">
+					<!-- Article header Starts -->
+					<hgroup>
+						<h2>Suite</h2>
+						<p class="price_by_night">$119</p>
+					</hgroup>
+					<!-- Article header Ends -->
+					<!-- Article Information Starts -->
+					<div class="information">
+						<div class="max_guest">9 Guests</div>
+						<div class="number_rooms">5 Double Bed</div>
+						<div class="number_bathrooms">7 Bathrooms</div>
+					</div>
+					<!-- Article Information Ends -->
+					<!-- Article Users Starts -->
+					<div class="user">
+						<p><strong>Owner:</strong> Sandra</p>
+					</div>
+					<!-- Article Users Ends -->
+					<!-- Article Description Starts -->
+					<div class="description">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet praesentium facilis dolorum. Excepturi iusto tenet</p>
+					</div>
+					<!-- Article Description Ends -->
+					<!-- Article Amenities Starts -->
+					<div class="amenities">
+						<h2>Amenities</h2>
+						<ul class="amenity_list">
+							<li class="amenity_item">Toys</li>
+							<li class="amenity_item">TV</li>
+							<li class="amenity_item">WiFi</li>
+						</ul>
+					</div>
+					<!-- Article Amenities Ends -->
+					<!-- Article Reviews Starts -->
+					<div class="reviews">
+						<h2>2 Reviews</h2>
+						<ul>
+							<li>
+								<h3>From Bob Dylan the 27th January 2019</h3>
+							</li>
+							<li>Lorem ipsum dolor sit amet, dolore quod. Libero, corporis. Consectetur quod ducimus facere dolores
+								commodi.</li>
+						</ul>
+						<ul>
+							<li>
+								<h3>From Bob Dylan the 5th June 2020</h3>
+							</li>
+							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore aliquid dolore quod. Libero,
+								corporis.</li>
+						</ul>
+					</div>
+					<!-- Article Reviews Ends -->
+				</article>
+			</div>
+		</section>
+		<!-- Places Section Ends -->
+	</div>
+	<!-- Container Ends -->
+
+	<!-- Page Footer Starts -->
+	<footer id="page-footer">
+		<p>Best School &copy;2023.</p>
+	</footer>
+	<!-- Page Footer Ends -->
+</body>
+</html>
