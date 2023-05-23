@@ -1,0 +1,31 @@
+/* Styling for the Common HTML tags  */
+* {
+        margin: 0px;
+        padding: 0px;
+        font-size: 14px;
+        font-family: Circular, "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+body {
+        color: #484848;
+        box-sizing: border-box;
+        display: flex;
+        flex-wrap: wrap;
+}
+.container {
+        width: 1000px;
+        margin: auto 10%;
+        box-sizing: border-box;
+        display: flex;
+        flex-wrap: wrap;
+        flex: 1 1 100%;
+        margin-bottom: 7%;
+}
+
+
+@media screen and (max-width: 768px) {
+        .container {
+                width: 100%;
+                margin: 0 0 10% 0;
+        }
+}

@@ -1,0 +1,132 @@
+/* Filter Section  */
+.filters {
+        background-color: #ffffff;
+        height: 70px;
+        width: 100%;
+        border: 1px solid #dddddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+}
+
+.filters button {
+        position: relative;
+        order: 3;
+        font-size: 18px;
+        background-color: #ff5a5f;
+        color: #ffffff;
+        height: 48px;
+        width: 20%;
+        border: none;
+        border-radius: 4px;
+        line-height: 5px;
+        right: 15px;
+}
+
+.filters button:hover {
+        opacity: 0.9;
+}
+
+.filters .locations {
+        order: 1;
+        flex: 2 0 35%;
+        border-right: 1px solid #dddddd;
+}
+
+.filters .amenities {
+        order: 2;
+        flex: 2 0 35%;
+}
+
+.filters .locations h3,
+.filters .amenities h3 {
+        font-weight: 600;
+        margin: 10px 0 2px 40px;
+}
+
+.filters .locations h4,
+.filters .amenities h4 {
+        font-weight: 400;
+        font-size: 14px;
+        margin: 0 0 0 40px;
+}
+
+.filters .locations:hover,
+.filters .amenities:hover {
+        background-color: #fafafa;
+}
+
+/* Styling for the ul / li popover */
+div.popover {
+        display: none;
+        box-sizing: border-box;
+        position: absolute;
+        padding: 0;
+        margin-top: 10px;
+        border: 1px solid #dddddd;
+        background-color: #fafafa;
+        width: 32%;
+        border-radius: 4px;
+}
+
+div.popover h2 {
+        font-size: 16px;
+        font-weight: bold;
+        margin: 20px;
+}
+
+div.popover ul li {
+        list-style-type: none;
+        display: block;
+        width: 100%;
+        padding: 5px 0 10px 20px;
+}
+
+ul.popover {
+        display: none;
+        list-style-type: none;
+        box-sizing: border-box;
+        position: absolute;
+        padding: 0;
+        margin-top: 10px;
+        border: 1px solid #dddddd;
+        background-color: #fafafa;
+        width: 30%;
+        border-radius: 4px;
+}
+
+ul.popover li {
+        display: block;
+        width: 100%;
+        padding: 5px 0 10px 20px;
+}
+
+ul.popover li:first-child {
+        margin-top: 20px;
+}
+
+ul.popover li:last-child {
+        margin-bottom: 20px;
+}
+
+.locations:hover .popover,
+.amenities:hover .popover {
+        display: block;
+}
+
+
+@media screen and (max-width: 768px) {
+        .filters button {
+                right: 0;
+        }
+
+        div.popover {
+                width: 40%;
+        }
+
+        ul.popover {
+                width: 39%;
+        }
+}
